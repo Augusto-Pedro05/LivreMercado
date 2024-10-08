@@ -40,22 +40,24 @@ public class Carrinho {
      @param vendedor   O vendedor do qual o produto está sendo adquirido.
      @param quantidade A quantidade do produto a ser adicionada à compra.
      */
-    public void adicioneItem(Produto produto, Vendedor vendedor, int quantidade) throws IllegalArgumentException{
+    public void adicioneItem(Produto produto,Vendedor vendedor, int quantidade){
         int QuantidadeDisponivel = vendedor.getEstoque().quantidadeEmEstoque(produto); // pega a quantidade que o vendedor tem do item
         if(QuantidadeDisponivel >= quantidade){ // vê se o vendedor tem a quantidade requisitada
-            for(ItemCompra item : itens ){
-                if(item.getProduto().equals(produto)){// vê se tem o produto no carrinho(list<itemcompra> itens) <- esse é o carrinho
-                    if(quantidade + item.getQuantidade() <= QuantidadeDisponivel){ // se a quantidade a se adicionar + a quantide que já tem está disponivel
-                        item.setQuantidade(quantidade + item.getQuantidade());// seta essa nova quantidade
-                        System.out.println("Foi adicionado o item "+produto.getNome());
-                        return; // sai do método
-                    }else{
-                        throw new IllegalArgumentException();
-                    }
-                }
-            }  
-        }
-    }
+          for(ItemCompra item : itens ){ // vê se tem o produto no carrinho
+              if(item.getProduto().equals(produto)){// vê se tem o produto no carrinho(list<itemcompra> itens) <- esse é o carrinho
+                 if(quantidade + item.getQuantidade()    <= QuantidadeDisponivel){ // se a quantidade a se adicionar + a quantide que já tem está disponivel
+                     item.setQuantidade(quantidade + item.getQuantidade());// seta essa nova quantidade
+                     return; // sai do método
+                 } else { 
+                 throw new IllegalArgumentException("a quantidade total (já existente no carrinho mais a nova) ultrapassou a quantidade em estoque");
+                       }
+                 }
+            }
+             ItemCompra adicionar = new ItemCompra(produto,vendedor,quantidade);
+             System.out.println( produto.getNome() + " foi adicionado ao carrinho de " + vendedor.getNome()+ "em " + quantidade + " unidades" );
+             itens.add(adicionar);
+        } else {throw new IllegalArgumentException("quantidade solicitada excedeu a quantidade disponível em estoque");}
+}
     /**
      Remove um item de compra do carrinho com base no produto fornecido.
      <p>
