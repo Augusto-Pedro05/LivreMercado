@@ -19,6 +19,7 @@ public class Comprador extends Pessoa{
     
     public void adicioneAoCarrinho(Produto produto, Vendedor vendedor, int quantidade){
         carrinho.adicioneItem(produto, vendedor, quantidade);
+        System.out.println("Produto adicionado ao carrinho:" + carrinho);
     }
     /**
      Efetua a compra dos itens presentes no carrinho do comprador.

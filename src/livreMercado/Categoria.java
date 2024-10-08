@@ -36,10 +36,12 @@ public class Categoria {
     public void adicioneProduto(Produto produto){
         if(!produtos.contains(produto)){
             produtos.add(produto);
+            System.out.println("Foi adicionado o produto "+produto.getNome()+" à categoria ");
         }
         for(Produto produtoProcurado : produtos){
             if(produtoProcurado.equals(produto)){
                 produtoProcurado.setCategoria(this);
+                System.out.println("Foi adicionado ao produto "+produtoProcurado.getNome()+" a categoria "+produtoProcurado.getCategoria().getNome());
             }
         }
     }
@@ -84,7 +86,10 @@ public class Categoria {
                 }
             }
         }
-        subcategorias.remove(subcategoria);
+        if(subcategorias.contains(subcategoria)){
+            System.out.println("Foi removida a categoria "+subcategoria.getNome());
+            subcategorias.remove(subcategoria);
+        }
     }
     
     public String getNome() {

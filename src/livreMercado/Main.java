@@ -15,72 +15,34 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Comprador comprador = new Comprador("gabriel");
-        Vendedor vendedor = new Vendedor("pedro");
-        Estoque estoque = new Estoque();
-        Categoria foda = new Categoria("foda");
-        Produto paoDeQueijo = new Produto("pao de queijo", "novo", "balduco", 3.00, foda);
-        Produto coco = new Produto("coco", "coco", "coco", 2.50, foda);
-
-        vendedor.adicioneProdutoAoEstoque(paoDeQueijo, 10);
-        comprador.adicioneAoCarrinho(paoDeQueijo, vendedor, 5);
-        //comprador.adicioneAoCarrinho(paoDeQueijo, vendedor, 3);
-        //comprador.removerDoCarrinho(paoDeQueijo);
-        vendedor.adicioneProdutoAoEstoque(coco, 5);
-        comprador.adicioneAoCarrinho(coco, vendedor, 4);
-
-        // testando adicioneProdutoAoCarrinho()
-        for(ItemCompra item : comprador.getCarrinho().getItens()){
-            System.out.println(item.getProduto().getNome());
-            System.out.println(item.getQuantidade());
-        }
-
-        comprador.efetuarCompra();
-
-        //testando efetuarCompra()
-        for(ItemCompra item : comprador.getCarrinho().getItens()){
-            System.out.println(item.getProduto().getNome());
-            System.out.println(item.getQuantidade());
-        }
-
-        for(ItemEstoque item : vendedor.getEstoque().getItens()){
-            System.out.println(item.getProduto().getNome());
-            System.out.println(item.getQuantidade());
-        }
-
-        //testando adicioneProduto() -> classe categoria
-        System.out.println(paoDeQueijo.getCategoria().getNome());
-        Categoria legal = new Categoria("legal");
-        legal.adicioneProduto(paoDeQueijo);
-        System.out.println(paoDeQueijo.getCategoria().getNome());
-        System.out.println();
-
-        //testando removaSubcategoria()
-
-        Categoria abacaxi = new Categoria("abacaxi");
-        Categoria divertidamente = new Categoria("divertidamente");
-        abacaxi.adicioneSubcategoria(divertidamente);
-        abacaxi.adicioneProduto(coco);
-        legal.adicioneSubcategoria(foda);
-        legal.adicioneSubcategoria(abacaxi);
-
-        for (Categoria categoria : legal.getSubcategorias()){
-            System.out.println(categoria.getNome());
-        }
-        for (Produto produto : legal.getProdutos()){
+        Mercado Livre = new Mercado();
+        Vendedor Josias = new Vendedor("Josias");
+        Comprador Vampeta = new Comprador("Vampeta");
+        Categoria Verdinha = new Categoria("Verdinha");
+        Categoria Boa = new Categoria("Boa");
+        Produto Pureza = new Produto("Pureza de Morango","de Morando","Antartica",3.50,Verdinha);
+        Produto Pureza2 = new Produto("Pureza de Maracuja","de Marajuca","Antartica",3.50,Verdinha);
+        Produto Pureza3 = new Produto("Pureza de Uva","de Uva","Antartica",3.50,Verdinha);
+       
+        Livre.adicioneComprador(Vampeta);
+        Livre.adicioneVendedor(Josias);
+        Livre.adicioneCategoria(Verdinha); // vamos adicionar a categoria verdinha
+        Verdinha.adicioneProduto(Pureza); // vamos adicionar um produto a nossa categoria verdinha
+        Verdinha.adicioneSubcategoria(Boa); // vamos criar uma subcategoria chamada boa
+        Boa.adicioneProduto(Pureza2);// vamos adicionar um produto a essa subcategoria
+        //System.out.println(Boa.getProdutos());//Produto@1e80bfe8 da subcategoria boa
+        for(Produto produto : Boa.getProdutos()){
             System.out.println(produto.getNome());
         }
-
-        legal.removaSubcategoria(abacaxi, true);
-
-        for (Categoria categoria : legal.getSubcategorias()){
-            System.out.println(categoria.getNome());
-        }
-        for (Produto produto : legal.getProdutos()){
+        //System.out.println(Verdinha.getProdutos()); // vamos ver quantos produtos temos na categoria verdinha
+        for(Produto produto : Verdinha.getProdutos()){
             System.out.println(produto.getNome());
         }
-
-        //legal.removaSubcategoria(abacaxi, true);
+        Verdinha.removaSubcategoria(Boa, true); // removemos a subcategoria boa, e isso deveria colocar os itens de "boa" para "verdinha"
+        //System.out.println(Verdinha.getProdutos()); // pra ver se foi adicionada a categoria "principal"
+        for(Produto produto : Verdinha.getProdutos()){
+            System.out.println(produto.getNome());
+        }
     }
     
 }

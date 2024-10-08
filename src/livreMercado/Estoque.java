@@ -33,10 +33,12 @@ public class Estoque {
         for(ItemEstoque item : itens){
             if(item.getProduto().equals(produto)){
                 item.adicioneQuantidade(quantidade);
+                System.out.println("Foi adicionado ao produto "+ item.getProduto().getNome() + " a quantiade "+item.getQuantidade());
                 return;
             }
         }
         itens.add(new ItemEstoque(produto, quantidade));
+        System.out.println("Foi adicionado um novo produto "+produto.getNome());
     }
 
     public List<ItemEstoque> getItens() {
@@ -82,6 +84,7 @@ public class Estoque {
             if(item.getProduto() == produto){
                 if (quantidade <= item.getQuantidade()){
                     item.removaQuantidade(quantidade);
+                    System.out.println("Foi removida a quantidade "+quantidade+" do produto "+produto.getNome());
                 }else{
                     throw new IllegalArgumentException("A quantidade a ser removida é maior que a quantidade disponível");
                 }

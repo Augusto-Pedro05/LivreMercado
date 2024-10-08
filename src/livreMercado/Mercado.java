@@ -49,6 +49,7 @@ public class Mercado {
         if (!compradores.contains(comprador)){
             compradores.add(comprador);
         }
+        System.out.println("O comprador "+comprador.getNome()+" foi adicionado");
     }
     /**
      Adiciona um novo vendedor ao mercado.
@@ -61,6 +62,7 @@ public class Mercado {
     public void adicioneVendedor(Vendedor vendedor){
         if (!vendedores.contains(vendedor)){
             vendedores.add(vendedor);
+            System.out.println("O vendedor "+vendedor.getNome()+ " foi adicionado");
         }
     }
     

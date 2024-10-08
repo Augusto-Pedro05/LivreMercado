@@ -47,6 +47,7 @@ public class Carrinho {
                 if(item.getProduto().equals(produto)){// vê se tem o produto no carrinho(list<itemcompra> itens) <- esse é o carrinho
                     if(quantidade + item.getQuantidade() <= QuantidadeDisponivel){ // se a quantidade a se adicionar + a quantide que já tem está disponivel
                         item.setQuantidade(quantidade + item.getQuantidade());// seta essa nova quantidade
+                        System.out.println("Foi adicionado o item "+produto.getNome());
                         return; // sai do método
                     }else{
                         throw new IllegalArgumentException();
@@ -69,7 +70,7 @@ public class Carrinho {
         for (ItemCompra item: itens){           
             if (item.getProduto().equals(produto)){
             itens.remove(item);
-            System.out.println(itens);
+            System.out.println("Foi removido o item "+item.getProduto().getNome());
             } 
         }
     }
