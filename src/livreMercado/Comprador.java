@@ -51,6 +51,11 @@ public class Comprador extends Pessoa{
                 item.setQuantidade(0);
             }
         }
+        for(ItemCompra item : carrinho.getItens()){
+            if (item.getQuantidade() <= 0){
+                carrinho.getItens().remove(item);
+            }
+        }
     }
     
     public Carrinho getCarrinho() {
